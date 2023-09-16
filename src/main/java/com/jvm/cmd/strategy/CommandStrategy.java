@@ -1,4 +1,4 @@
-package com.jvm.cmd_tools.strategy;
+package com.jvm.cmd.strategy;
 
 /**
  * @Author zal

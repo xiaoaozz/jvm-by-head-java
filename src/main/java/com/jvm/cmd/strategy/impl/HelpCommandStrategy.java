@@ -1,6 +1,6 @@
-package com.jvm.cmd_tools.strategy.impl;
+package com.jvm.cmd.strategy.impl;
 
-import com.jvm.cmd_tools.strategy.CommandStrategy;
+import com.jvm.cmd.strategy.CommandStrategy;
 
 /**
  * @Author zal

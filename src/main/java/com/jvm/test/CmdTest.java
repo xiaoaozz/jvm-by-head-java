@@ -1,6 +1,6 @@
 package com.jvm.test;
 
-import com.jvm.cmd_tools.parse.Cmd;
+import com.jvm.cmd.Cmd;
 
 import java.util.Scanner;
 

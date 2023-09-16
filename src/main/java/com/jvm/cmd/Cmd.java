@@ -1,11 +1,11 @@
-package com.jvm.cmd_tools.parse;
+package com.jvm.cmd;
 
-import com.jvm.cmd_tools.enums.CommandConstants;
-import com.jvm.cmd_tools.strategy.CommandStrategy;
-import com.jvm.cmd_tools.strategy.impl.ClasspathCommandStrategy;
-import com.jvm.cmd_tools.strategy.impl.HelpCommandStrategy;
-import com.jvm.cmd_tools.strategy.impl.JreCommandStrategy;
-import com.jvm.cmd_tools.strategy.impl.VersionCommandStrategy;
+import com.jvm.util.enums.CommandConstants;
+import com.jvm.cmd.strategy.CommandStrategy;
+import com.jvm.cmd.strategy.impl.ClasspathCommandStrategy;
+import com.jvm.cmd.strategy.impl.HelpCommandStrategy;
+import com.jvm.cmd.strategy.impl.JreCommandStrategy;
+import com.jvm.cmd.strategy.impl.VersionCommandStrategy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

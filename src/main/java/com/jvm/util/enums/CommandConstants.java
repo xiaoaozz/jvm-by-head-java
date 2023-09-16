@@ -1,4 +1,4 @@
-package com.jvm.cmd_tools.enums;
+package com.jvm.util.enums;
 
 /**
  * @Author zal
@@ -36,5 +36,10 @@ public class CommandConstants {
      */
     public static final Integer ERROR_LENGTH = 2;
     public static final Integer MAX_LENGTH = 4;
+
+    /**
+     * 路径分割符，在windows下使用;，在Unix/Linux下使用:分割
+     */
+    public static final String PATH_SEPARATOR = System.getProperty("os.name").contains("Windows") ? ";" : ":";
 
 }
