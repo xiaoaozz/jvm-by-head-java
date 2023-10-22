@@ -33,12 +33,12 @@ public class WildcardEntry extends Entry {
     }
 
     @Override
-    byte[] readClass(String className) throws IOException {
+    public byte[] readClass(String className) throws IOException {
         return compositeEntry.readClass(className);
     }
 
     @Override
-    String printClassName() {
+    public String printClassName() {
         return null;
     }
 }

@@ -55,7 +55,7 @@ public class ZipJarEntry extends Entry {
     }
 
     @Override
-    byte[] readClass(String className) throws IOException {
+    public byte[] readClass(String className) throws IOException {
         File file = new File(absPath);
         ZipFile zf = new ZipFile(file);
         ZipEntry ze = zf.getEntry(className);
@@ -75,7 +75,7 @@ public class ZipJarEntry extends Entry {
     }
 
     @Override
-    String printClassName() {
+    public String printClassName() {
         return absPath;
     }
 }

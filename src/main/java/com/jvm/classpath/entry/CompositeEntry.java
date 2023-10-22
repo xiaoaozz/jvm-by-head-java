@@ -35,7 +35,7 @@ public class CompositeEntry extends Entry {
     }
 
     @Override
-    byte[] readClass(String className) throws IOException {
+    public byte[] readClass(String className) throws IOException {
         byte[] data;
         for (int i = 0; i < compositeEntries.size(); i++) {
             try {
@@ -54,7 +54,7 @@ public class CompositeEntry extends Entry {
     }
 
     @Override
-    String printClassName() {
+    public String printClassName() {
         return pathList;
     }
 }

@@ -2,6 +2,7 @@ package com.jvm.classpath.entry;
 
 import java.io.*;
 
+
 /**
  * @Author zal
  * @Date 2023/9/16 19:30
@@ -29,7 +30,7 @@ public class DirEntry extends Entry {
 
 
     @Override
-    byte[] readClass(String className) throws IOException {
+    public byte[] readClass(String className) throws IOException {
         // 构造文件对象，指向指定路径下对应文件名的文件
         File file = new File(absDir, className);
         // 创建一个字节数组，用于暂存读取的数据
@@ -51,7 +52,7 @@ public class DirEntry extends Entry {
     }
 
     @Override
-    String printClassName() {
+    public String printClassName() {
         return absDir;
     }
 }

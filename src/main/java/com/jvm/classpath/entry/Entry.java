@@ -1,6 +1,7 @@
 package com.jvm.classpath.entry;
 
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.jvm.constant.CommandConstants;
 
 import java.io.IOException;
@@ -20,14 +21,14 @@ public abstract class Entry {
      * @return 类的二进制流
      * @throws IOException io异常
      */
-    abstract byte[] readClass(String className) throws IOException;
+    public abstract byte[] readClass(String className) throws IOException;
 
     /**
      * 打印className的字符串表示形式
      *
      * @return className字符串
      */
-    abstract String printClassName();
+    public abstract String printClassName();
 
     /**
      * 工厂方法，根据传入path的形式不同，选择不同的处理方式
@@ -35,8 +36,8 @@ public abstract class Entry {
      * @param path class文件路径
      * @return Entry
      */
-    static Entry createEntry(String path) {
-        if (ObjectUtil.isNotNull(path)) {
+    public static Entry createEntry(String path) {
+        if (StrUtil.isNotEmpty(path)) {
             if (path.contains(CommandConstants.PATH_SEPARATOR)) {
                 // 如果有系统分隔符
                 return new CompositeEntry(path, CommandConstants.PATH_SEPARATOR);
