@@ -1,6 +1,7 @@
 package com.jvm.classpath.entry;
 
-import com.jvm.util.enums.CommandConstants;
+import cn.hutool.core.util.ObjectUtil;
+import com.jvm.constant.CommandConstants;
 
 import java.io.IOException;
 
@@ -31,19 +32,22 @@ public abstract class Entry {
     /**
      * 工厂方法，根据传入path的形式不同，选择不同的处理方式
      *
-     * @param path
-     * @return
+     * @param path class文件路径
+     * @return Entry
      */
     static Entry createEntry(String path) {
-        if (path != null) {
+        if (ObjectUtil.isNotNull(path)) {
             if (path.contains(CommandConstants.PATH_SEPARATOR)) {
                 // 如果有系统分隔符
-
-            } else if (path.contains("*")) {
+                return new CompositeEntry(path, CommandConstants.PATH_SEPARATOR);
+            } else if (path.contains(CommandConstants.ASTERISK)) {
                 // 如果有模糊路径
-            } else if (path.contains(".jar") || path.contains(".JAR") || path.contains(".zip")) {
+                return new WildcardEntry(path);
+            } else if (path.contains(CommandConstants.JAR_SUFFIX_LOWER) || path.contains(CommandConstants.JAR_SUFFIX_UPPER) || path.contains(CommandConstants.ZIP_SUFFIX)) {
                 // 如果含有jar或者zip
+                return new ZipJarEntry(path);
             }
+            return new DirEntry(path);
         }
         return null;
     }

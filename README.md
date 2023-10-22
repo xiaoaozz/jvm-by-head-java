@@ -9,20 +9,44 @@
 ### 组织架构
 
 ```
-.
-├── com
-│   └── jvm
-│       ├── classpath
-│       │   ├── ClassPath.java
-│       │   └── entry
-│       ├── cmd
-│       │   ├── Cmd.java
-│       │   └── strategy
-│       ├── test
-│       │   └── CmdTest.java
-│       └── util
-│           └── enums
-└── tree.txt
+jvm-by-head-go
+│  pom.xml 依赖
+│  README.md 项目描述
+├─src
+  └─main
+      └─java
+          └─com
+              └─jvm
+                  ├─classpath 寻找class文件
+                  │  │  ClassPath.java
+                  │  │
+                  │  └─entry 组合模式实现 
+                  │          CompositeEntry.java
+                  │          DirEntry.java
+                  │          Entry.java
+                  │          WildcardEntry.java
+                  │          ZipJarEntry.java
+                  │
+                  ├─cmd 简单命令行工具
+                  │  │  Cmd.java
+                  │  │
+                  │  └─strategy 策略模式实现
+                  │      │  CommandStrategy.java
+                  │      │
+                  │      └─impl
+                  │              ClasspathCommandStrategy.java
+                  │              HelpCommandStrategy.java
+                  │              JreCommandStrategy.java
+                  │              VersionCommandStrategy.java
+                  │              
+                  ├─test
+                  │      CmdTest.java
+                  │
+                  └─util 工具包
+                      └─enums
+                              CommandConstants.java
+
+
 ```
 
 ### 架构图

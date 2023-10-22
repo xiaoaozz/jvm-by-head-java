@@ -26,6 +26,7 @@ public class CompositeEntry extends Entry {
 
     public CompositeEntry(String pathList, String pathListSeparator) {
         this.pathList = pathList;
+        // 使用系统分隔符将路径分开，然后分别具体化
         String[] paths = pathList.split(pathListSeparator);
         this.compositeEntries = new ArrayList<>(paths.length);
         for (int i = 0; i < paths.length; i++) {
@@ -38,7 +39,9 @@ public class CompositeEntry extends Entry {
         byte[] data;
         for (int i = 0; i < compositeEntries.size(); i++) {
             try {
+                // 读取符合条目中的类数据
                 data = compositeEntries.get(i).readClass(className);
+                // 成功读取数据时，返回数据
                 if (data != null) {
                     return data;
                 }
@@ -46,6 +49,7 @@ public class CompositeEntry extends Entry {
                 e.printStackTrace();
             }
         }
+        // 否则返回null
         return null;
     }
 

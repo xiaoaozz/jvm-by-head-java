@@ -1,4 +1,4 @@
-package com.jvm.util.enums;
+package com.jvm.constant;
 
 /**
  * @Author zal
@@ -35,11 +35,24 @@ public class CommandConstants {
      * 固定命令长度
      */
     public static final Integer ERROR_LENGTH = 2;
-    public static final Integer MAX_LENGTH = 4;
+
 
     /**
      * 路径分割符，在windows下使用;，在Unix/Linux下使用:分割
      */
     public static final String PATH_SEPARATOR = System.getProperty("os.name").contains("Windows") ? ";" : ":";
+
+
+    /**
+     * 文件后缀
+     */
+    public static final String ZIP_SUFFIX = ".zip";
+    public static final String JAR_SUFFIX_LOWER = ".jar";
+    public static final String JAR_SUFFIX_UPPER = ".JAR";
+
+    /**
+     * 通配符
+     */
+    public static final String ASTERISK = "*";
 
 }

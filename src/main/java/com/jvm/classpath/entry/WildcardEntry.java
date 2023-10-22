@@ -1,6 +1,6 @@
 package com.jvm.classpath.entry;
 
-import cn.hutool.core.lang.Assert;
+import com.jvm.constant.CommandConstants;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,12 +21,13 @@ public class WildcardEntry extends Entry {
         String baseDir = jreLibPath.substring(0, jreLibPath.length() - 1);
         File dir = new File(baseDir);
         File[] files = dir.listFiles();
-        Assert.notNull(files, "文件列表不存在");
         this.compositeEntry = new CompositeEntry();
         compositeEntry.compositeEntries = new ArrayList<>();
-        for (File file : files) {
-            if (file.isFile() && file.getName().endsWith(".jar")) {
-                compositeEntry.compositeEntries.add(new ZipJarEntry(baseDir, file.getName()));
+        if (files != null && files.length > 0) {
+            for (File file : files) {
+                if (file.isFile() && file.getName().endsWith(CommandConstants.JAR_SUFFIX_LOWER)) {
+                    compositeEntry.compositeEntries.add(new ZipJarEntry(baseDir, file.getName()));
+                }
             }
         }
     }

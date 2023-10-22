@@ -1,6 +1,6 @@
 package com.jvm.cmd;
 
-import com.jvm.util.enums.CommandConstants;
+import com.jvm.constant.CommandConstants;
 import com.jvm.cmd.strategy.CommandStrategy;
 import com.jvm.cmd.strategy.impl.ClasspathCommandStrategy;
 import com.jvm.cmd.strategy.impl.HelpCommandStrategy;
