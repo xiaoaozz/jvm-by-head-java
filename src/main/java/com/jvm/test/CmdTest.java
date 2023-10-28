@@ -16,5 +16,9 @@ public class CmdTest {
         String cmdLine = in.nextLine();
         String[] argsArr = cmdLine.split("\\s+");
         Cmd cmd = new Cmd(argsArr);
+        startJVM(cmd);
+    }
+    private static void startJVM(Cmd cmd) {
+        System.out.printf("classpath: %s class: %s args: %s\n", cmd.getCpOption(), cmd.getClazz(), cmd.getArgs());
     }
 }
