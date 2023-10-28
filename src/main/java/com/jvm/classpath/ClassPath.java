@@ -52,11 +52,8 @@ public class ClassPath {
      * @return 文件字节流
      */
     public byte[] readClass(String className) {
-        if (className.endsWith(".class")) {
-            throw new RuntimeException("can't find or can't load the class: " + className);
-        }
-        className = className.replace(".", "/");
         className = className + ".class";
+        System.out.println("【搜索class文件】className:" + className);
         byte[] data;
         try {
             data = bootClasspath.readClass(className);
@@ -88,6 +85,7 @@ public class ClassPath {
      * @return 有效的jre路径
      */
     private String getJreDir(String jreOption) {
+        System.out.println("【寻找jre路径】参数jreOption:" + jreOption);
         File jreFile;
         // 先按照指定的jre路径寻找jre文件，如果存在，则直接返回路径
         if (StrUtil.isNotEmpty(jreOption)) {
@@ -96,16 +94,19 @@ public class ClassPath {
                 return jreOption;
             }
         }
+        System.out.println("【寻找jre路径】参数jreOption路径对应的jre文件不存在");
         // 如果jre选项为空，那么在当前路径下找jre文件
-        jreFile = new File("jre");
+        jreFile = new File("./jre");
         if (jreFile.exists()) {
-            return jreFile.getAbsolutePath();
+            return "./jre";
         }
+        System.out.println("【寻找jre路径】当前路径下的jre文件不存在");
         // 如果都不存在，那么在JAVA_HOME中寻找
         String javaHome = System.getenv("JAVA_HOME");
         if (javaHome != null) {
             return javaHome + File.separator + "jre";
         }
+        System.out.println("【寻找jre路径】JAVA_HOME路径下对应的jre文件不存在");
         throw new RuntimeException("Can not find jre folder!");
     }
 
@@ -141,6 +142,9 @@ public class ClassPath {
      * @return Entry
      */
     private Entry parseUserClasspath(String cpOption) {
+        if (StrUtil.isEmpty(cpOption)) {
+            cpOption = ".";
+        }
         return Entry.createEntry(cpOption);
     }
 }

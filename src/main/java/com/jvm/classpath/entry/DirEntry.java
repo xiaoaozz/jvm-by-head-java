@@ -1,6 +1,8 @@
 package com.jvm.classpath.entry;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 
 /**
@@ -11,8 +13,14 @@ import java.io.*;
  */
 public class DirEntry extends Entry {
 
+
     /**
-     * 文件的绝对路径
+     * 方法一：java.nio.file.Path
+     */
+    // private Path absolutePath;
+
+    /**
+     * 方法二：文件的绝对路径
      */
     private String absDir;
 
@@ -31,6 +39,9 @@ public class DirEntry extends Entry {
 
     @Override
     public byte[] readClass(String className) throws IOException {
+        // 1. 方法一：可以使用java.nio.file.Path类，可以直接在路径下找到对应文件，然后再使用Files.readAllBytes()读取字节数组
+        // return Files.readAllBytes(absolutePath.resolve(className));
+        // 2. 方法二：直接使用java原生的输入、输出流
         // 构造文件对象，指向指定路径下对应文件名的文件
         File file = new File(absDir, className);
         // 创建一个字节数组，用于暂存读取的数据

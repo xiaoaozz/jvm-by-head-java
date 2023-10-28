@@ -1,5 +1,6 @@
 package com.jvm.cmd.strategy.impl;
 
+import com.jvm.cmd.Cmd;
 import com.jvm.cmd.strategy.CommandStrategy;
 
 /**
@@ -10,7 +11,7 @@ import com.jvm.cmd.strategy.CommandStrategy;
  */
 public class JreCommandStrategy implements CommandStrategy {
     @Override
-    public void execute(String[] args) {
-
+    public void execute(Cmd cmd, String[] args) {
+        cmd.setXJreOption(args[2]);
     }
 }

@@ -94,12 +94,14 @@ public class Cmd {
 
         if (strategy != null) {
             // 如果找到了匹配的策略，执行策略
-            strategy.execute(args);
+            strategy.execute(this, args);
         } else {
             // 否则输出提示信息
             printError();
         }
+        // 类路径
         this.clazz = args[args.length - 1];
+        // 参数值
         this.args = Arrays.copyOfRange(args, 1, args.length - 1);
     }
 
