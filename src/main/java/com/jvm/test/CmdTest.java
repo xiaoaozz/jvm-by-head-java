@@ -1,13 +1,10 @@
 package com.jvm.test;
 
-import com.jvm.classfile.ClassFile;
-import com.jvm.classpath.ClassPath;
 import com.jvm.cmd.Cmd;
 import com.jvm.test.startjvm.StartJvmWithClassFile;
 import com.jvm.test.startjvm.startJvmWithClassPath;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  * @Author zal
@@ -21,9 +18,9 @@ public class CmdTest {
         Cmd cmd = new Cmd(args);
         System.out.println(cmd);
         // 测试命令行工具
-        // startJVMWithCmd(cmd);
+//         startJVMWithCmd(cmd);
         // 测试搜索class文件
-        // startJvmWithClassPath.test(cmd);
+//         startJvmWithClassPath.test(cmd);
         // 测试解析class文件
         StartJvmWithClassFile.test(cmd);
     }

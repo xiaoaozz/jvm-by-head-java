@@ -26,7 +26,7 @@ public class StartJvmWithClassFile {
         String className = cmd.getClazz();
         ClassFile classFile = loadClass(className, classPath);
         assert classFile != null;
-        printClassInfo(classFile);
+//        printClassInfo(classFile);
     }
 
     /**

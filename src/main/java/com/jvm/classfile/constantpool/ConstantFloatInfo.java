@@ -20,6 +20,6 @@ public class ConstantFloatInfo extends ConstantInfo {
 
     @Override
     void readInfo(ClassReader reader) {
-        val = reader.readUint64ToFloat();
+        val = reader.readUint32ToFloat();
     }
 }

@@ -1,6 +1,7 @@
 package com.jvm.classfile;
 
 import com.jvm.classfile.attributes.AttributeInfo;
+import lombok.Data;
 
 /**
  * @Author zal
@@ -15,6 +16,7 @@ import com.jvm.classfile.attributes.AttributeInfo;
  * attribute_info attributes[attributes_count];
  * }
  */
+@Data
 public class MemberInfo {
 
     /**
@@ -64,15 +66,8 @@ public class MemberInfo {
     }
 
     /**
-     * 获取访问标志
-     * @return 1个int值，代表访问标志
-     */
-    public int getAccessFlags() {
-        return accessFlags;
-    }
-
-    /**
      * 从常量池查找字段或者方法名
+     *
      * @return 字段名或者方法名
      */
     public String getName() {
@@ -81,6 +76,7 @@ public class MemberInfo {
 
     /**
      * 从常量池查找字段或者方法描述符
+     *
      * @return 字段或者方法描述符
      */
     public String descriptor() {

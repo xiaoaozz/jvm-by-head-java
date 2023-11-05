@@ -1,6 +1,7 @@
 package com.jvm.classfile;
 
 import cn.hutool.core.util.ByteUtil;
+import com.jvm.utils.ByteUtils;
 
 /**
  * @Author zal
@@ -31,6 +32,7 @@ public class ClassReader {
 
     /**
      * 读取u1类型数据
+     *
      * @return 1个字节
      */
     public byte readUint8() {
@@ -39,54 +41,61 @@ public class ClassReader {
 
     /**
      * 读取u2类型数据
+     *
      * @return 1个int整数
      */
     public int readUint16() {
-        return ByteUtil.bytesToInt(readBytes(2));
+        return ByteUtils.byteToInt16(readBytes(2));
     }
 
     /**
      * 读取u4类型数据
+     *
      * @return 1个int整数
      */
     public int readUint32ToInteger() {
-        return ByteUtil.bytesToInt(readBytes(4));
+        return ByteUtils.byteToInt32(readBytes(4));
     }
 
     /**
      * 读取u4类型数据
-     * @return 1个long整数
+     *
+     * @return 1个int整数
      */
-    public long readUint32() {
-        return ByteUtil.bytesToLong(readBytes(4));
+    public long readUint32ToLong() {
+        return ByteUtils.byteToLong32(readBytes(4));
     }
 
     /**
-     * 读取u8类型数据（JAVA虚拟机并未定义）
+     * 读取u4类型数据
+     *
      * @return 1个单精度浮点数
      */
-    public float readUint64ToFloat() {
-        return ByteUtil.bytesToFloat(readBytes(8));
+    public float readUint32ToFloat() {
+        return ByteUtils.byteToFloat32(readBytes(4));
     }
 
     /**
      * 读取u8类型数据（JAVA虚拟机并未定义）
+     *
      * @return 1个双精度浮点数
      */
     public double readUint64ToDouble() {
-        return ByteUtil.bytesToDouble(readBytes(8));
+        return ByteUtils.byteToDouble64(readBytes(8));
     }
 
     /**
      * 读取u8类型数据（JAVA虚拟机并未定义）
+     *
      * @return 1个long数据
      */
     public long readUint64ToLong() {
-        return ByteUtil.bytesToLong(readBytes(8));
+        return ByteUtils.byteToLong64(readBytes(8));
     }
 
     /**
      * 读取uint16表
+     *
      * @return 1个int数组
      */
     public int[] readUint16s() {
@@ -100,6 +109,7 @@ public class ClassReader {
 
     /**
      * 用于读取指定数量的字节数据
+     *
      * @param n 指定数量
      * @return 字节数组
      */

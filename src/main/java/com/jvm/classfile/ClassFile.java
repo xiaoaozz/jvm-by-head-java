@@ -1,6 +1,7 @@
 package com.jvm.classfile;
 
 import com.jvm.classfile.attributes.AttributeInfo;
+import com.jvm.utils.ByteUtils;
 
 /**
  * @Author zal
@@ -96,8 +97,8 @@ public class ClassFile {
      * @param reader 类读取器
      */
     private void readAndCheckMagic(ClassReader reader) {
-        long magic = reader.readUint32();
-        if (magic != (0xCAFEBABE & 0xFFFFFFFL)) {
+        long magic = reader.readUint32ToLong();
+        if (magic != (0xCAFEBABEL & 0x0FFFFFFFFL)) {
             throw new ClassFormatError("magic!");
         }
     }
