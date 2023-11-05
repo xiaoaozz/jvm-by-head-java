@@ -1,4 +1,4 @@
-package com.jvm.test;
+package com.jvm.test.testclass;
 
 /**
  * @Author zal

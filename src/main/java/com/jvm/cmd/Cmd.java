@@ -64,7 +64,8 @@ public class Cmd {
             printUsage();
             return;
         }
-
+        // 类名称下标
+        int classNameIndex = 1;
         // 获取命令类型
         String commandType = args[1];
         // 初始化不同的策略
@@ -83,10 +84,12 @@ public class Cmd {
             case CommandConstants.COMMEND_CLASSPATH:
             case CommandConstants.COMMEND_SHORT_CLASSPATH:
                 // 如果是classpath命令，则执行指定的classpath处理策略
+                classNameIndex = 3;
                 strategy = new ClasspathCommandStrategy();
                 break;
             case CommandConstants.COMMEND_JRE:
                 // 如果是-XJre命令，则执行指定的jre运行处理策略
+                classNameIndex = 3;
                 strategy = new JreCommandStrategy();
                 break;
             default:
@@ -100,9 +103,15 @@ public class Cmd {
             printError();
         }
         // 类路径
-        this.clazz = args[args.length - 1];
+        this.clazz = args[classNameIndex];
         // 参数值
-        this.args = Arrays.copyOfRange(args, 1, args.length - 1);
+        int numArgs = args.length - classNameIndex - 1;
+        if (numArgs > 0) {
+            this.args = new String[numArgs];
+            System.arraycopy(args, classNameIndex + 1, this.args, 0, numArgs);
+        } else {
+            this.args = new String[0];
+        }
     }
 
     /**

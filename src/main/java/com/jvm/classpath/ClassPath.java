@@ -37,10 +37,8 @@ public class ClassPath {
      * @return 解析的对应路径
      */
     public ClassPath(String jreOption, String cpOption) {
-        String jreDir = getJreDir(jreOption);
-        this.bootClasspath = parseBootClasspath(jreDir);
-        this.extClasspath = parseExtClasspath(jreDir);
-        this.userClasspath = parseUserClasspath(cpOption);
+        parseBootAneExtClasspath(jreOption);
+        parseUserClasspath(cpOption);
     }
 
 
@@ -112,39 +110,29 @@ public class ClassPath {
 
 
     /**
-     * 解析启动类加载器
+     * 解析启动类加载器和扩展类加载器
      *
-     * @param jreDir jre路径
-     * @return Entry
+     * @param jreOption jre参数
      */
-    private Entry parseBootClasspath(String jreDir) {
-        // 可能出现的情况是：jre/lib/*
+    private void parseBootAneExtClasspath(String jreOption) {
+        String jreDir = getJreDir(jreOption);
+        // 启动类加载器在：jre/lib/*
         String jreLibPath = jreDir + File.separatorChar + "lib" + File.separator + "*";
-        return new WildcardEntry(jreLibPath);
-    }
-
-    /**
-     * 解析扩展类加载器
-     *
-     * @param jreDir jre路径
-     * @return Entry
-     */
-    private Entry parseExtClasspath(String jreDir) {
-        // 可能出现的情况是：jre/lib/ext/*
-        String jreLibPath = jreDir + File.separatorChar + "lib" + File.separator + "ext" + File.separator + "*";
-        return new WildcardEntry(jreLibPath);
+        this.bootClasspath = new WildcardEntry(jreLibPath);
+        // 扩展类加载器在：/jre/lib/ext/*
+        String jreExtPath = jreDir + File.separator + "lib" + File.separator + "ext" + File.separator + "*";
+        this.extClasspath = new WildcardEntry(jreExtPath);
     }
 
     /**
      * 解析用户类加载器
      *
      * @param cpOption -cp参数
-     * @return Entry
      */
-    private Entry parseUserClasspath(String cpOption) {
+    private void parseUserClasspath(String cpOption) {
         if (StrUtil.isEmpty(cpOption)) {
             cpOption = ".";
         }
-        return Entry.createEntry(cpOption);
+        this.userClasspath = Entry.createEntry(cpOption);
     }
 }
