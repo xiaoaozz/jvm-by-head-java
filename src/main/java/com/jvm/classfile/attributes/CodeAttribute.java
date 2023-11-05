@@ -70,7 +70,7 @@ public class CodeAttribute extends AttributeInfo {
     void readInfo(ClassReader reader) {
         this.maxStack = reader.readUint16();
         this.maxLocals = reader.readUint16();
-        int codeLength = reader.readUint32ToInteger();
+        int codeLength = reader.readUint32ToInt();
         this.code = reader.readBytes(codeLength);
         this.exceptionTable = readExceptionTable(reader);
         this.attributes = readAttributes(reader, this.constantPool);

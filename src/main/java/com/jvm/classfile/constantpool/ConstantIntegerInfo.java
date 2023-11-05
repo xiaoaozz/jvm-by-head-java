@@ -20,6 +20,6 @@ public class ConstantIntegerInfo extends ConstantInfo {
 
     @Override
     void readInfo(ClassReader reader) {
-        val = reader.readUint32ToInteger();
+        val = reader.readUint32ToInt();
     }
 }

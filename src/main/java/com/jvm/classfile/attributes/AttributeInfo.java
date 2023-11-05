@@ -64,7 +64,7 @@ public abstract class AttributeInfo {
     public static AttributeInfo readAttribute(ClassReader reader, ConstantPool constantPool) {
         int attrNameIndex = reader.readUint16();
         String attrName = constantPool.getUtf8(attrNameIndex);
-        int attrLen = reader.readUint32ToInteger();
+        int attrLen = reader.readUint32ToInt();
         AttributeInfo attributeInfo = newAttributeInfo(attrName, attrLen, constantPool);
         attributeInfo.readInfo(reader);
         return attributeInfo;

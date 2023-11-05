@@ -2,6 +2,7 @@ package com.jvm.classfile;
 
 import cn.hutool.core.util.ByteUtil;
 import com.jvm.utils.ByteUtils;
+import lombok.Data;
 
 /**
  * @Author zal
@@ -9,17 +10,13 @@ import com.jvm.utils.ByteUtils;
  * @Description class数据读取类 u1、u2、u4分别表示1、2、4字节无符号整数
  * @Version 1.0
  */
+@Data
 public class ClassReader {
 
     /**
      * 类数据
      */
     private byte[] data;
-
-    /**
-     * 当前读取到的索引
-     */
-    private int index = 0;
 
     /**
      * 构造函数
@@ -36,7 +33,7 @@ public class ClassReader {
      * @return 1个字节
      */
     public byte readUint8() {
-        return data[index++];
+        return readBytes(1)[0];
     }
 
     /**
@@ -53,7 +50,7 @@ public class ClassReader {
      *
      * @return 1个int整数
      */
-    public int readUint32ToInteger() {
+    public int readUint32ToInt() {
         return ByteUtils.byteToInt32(readBytes(4));
     }
 
@@ -114,10 +111,9 @@ public class ClassReader {
      * @return 字节数组
      */
     public byte[] readBytes(int n) {
-        byte[] bytes = new byte[n];
-        for (int i = 0; i < n; i++) {
-            bytes[i] = data[index++];
-        }
-        return bytes;
+        byte[] copy = new byte[n];
+        System.arraycopy(data, 0, copy, 0, n);
+        System.arraycopy(data, n, data, 0, data.length - n);
+        return copy;
     }
 }
