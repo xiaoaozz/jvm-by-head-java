@@ -8,7 +8,7 @@ import com.jvm.classfile.ClassReader;
  * @Description 存放方法的局部变量信息
  * @Version 1.0
  */
-public class LocalVariableTableAttribute extends AttributeInfo{
+public class LocalVariableTableAttribute extends AttributeInfo {
 
     /**
      * 局部变量表
@@ -20,12 +20,11 @@ public class LocalVariableTableAttribute extends AttributeInfo{
         int localVariableTableLength = reader.readUint16();
         this.localVariableTable = new LocalVariableTableEntry[localVariableTableLength];
         for (int i = 0; i < localVariableTableLength; i++) {
-            localVariableTable[i] = new LocalVariableTableEntry(reader.readUint16(), reader.readUint16(),
-                    reader.readUint16(), reader.readUint16(), reader.readUint16());
+            localVariableTable[i] = new LocalVariableTableEntry(reader.readUint16(), reader.readUint16(), reader.readUint16(), reader.readUint16(), reader.readUint16());
         }
     }
 
-    class LocalVariableTableEntry {
+    static class LocalVariableTableEntry {
 
         /**
          * 代表该局部变量的生命周期开始的字节码偏移量
@@ -54,14 +53,19 @@ public class LocalVariableTableAttribute extends AttributeInfo{
 
         /**
          * 构造函数
-         * @param startPc 开始字节码偏移量
-         * @param length 属性长度
-         * @param nameIndex 属性名称索引
+         *
+         * @param startPc         开始字节码偏移量
+         * @param length          属性长度
+         * @param nameIndex       属性名称索引
          * @param descriptorIndex 属性描述索引
-         * @param index 属性位置
+         * @param index           属性位置
          */
         public LocalVariableTableEntry(int startPc, int length, int nameIndex, int descriptorIndex, int index) {
-
+            this.startPc = startPc;
+            this.length = length;
+            this.nameIndex = nameIndex;
+            this.descriptorIndex = descriptorIndex;
+            this.index = index;
         }
     }
 }

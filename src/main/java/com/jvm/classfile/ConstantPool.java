@@ -1,12 +1,10 @@
 package com.jvm.classfile;
 
-import com.jvm.classfile.ClassReader;
+import cn.hutool.log.Log;
 import com.jvm.classfile.constantpool.ConstantClassInfo;
 import com.jvm.classfile.constantpool.ConstantInfo;
 import com.jvm.classfile.constantpool.ConstantNameAndTypeInfo;
 import com.jvm.classfile.constantpool.ConstantUtf8Info;
-import com.sun.org.apache.bcel.internal.classfile.ConstantClass;
-import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +15,6 @@ import java.util.Map;
  * @Description 常量池
  * @Version 1.0
  */
-@Data
 public class ConstantPool {
 
     /**
@@ -25,8 +22,11 @@ public class ConstantPool {
      */
     private ConstantInfo[] constantInfos;
 
+    private static final Log log = Log.get();
+
     /**
      * 构造函数
+     *
      * @param reader 类读取器
      */
     public ConstantPool(ClassReader reader) {
@@ -34,7 +34,7 @@ public class ConstantPool {
         this.constantInfos = new ConstantInfo[count];
         for (int i = 1; i < count; i++) {
             constantInfos[i] = ConstantInfo.readConstantInfo(reader, this);
-            switch (constantInfos[i].getType()) {
+            switch (constantInfos[i].getTag()) {
                 // 这两种类型占用两个位置
                 case ConstantInfo.CONSTANT_Double:
                 case ConstantInfo.CONSTANT_Long:
@@ -46,6 +46,7 @@ public class ConstantPool {
 
     /**
      * 按索引查找常量，如果 没有可以抛出异常
+     *
      * @param index 索引
      * @return 指定常量
      */
@@ -74,6 +75,7 @@ public class ConstantPool {
 
     /**
      * 从常量池查找UTF-8字符串，只要是调用这个方法，一定是读取字符串常量
+     *
      * @param index 索引
      * @return 字符串
      */
@@ -81,12 +83,11 @@ public class ConstantPool {
         return ((ConstantUtf8Info) getConstantInfo(index)).getStr();
     }
 
-    /**
-     * 获取常量池
-     * @return 常量数组
-     */
     public ConstantInfo[] getConstantInfos() {
         return constantInfos;
     }
 
+    public void setConstantInfos(ConstantInfo[] constantInfos) {
+        this.constantInfos = constantInfos;
+    }
 }

@@ -17,16 +17,17 @@ public class StartJvmWithClassFile {
 
     /**
      * 测试
+     *
      * @param cmd 命令行工具
      * @test
      */
     public static void test(Cmd cmd) {
-        ClassPath classPath = new ClassPath(cmd.getXJreOption(), cmd.getCpOption());
+        ClassPath classPath = new ClassPath(cmd.getxJreOption(), cmd.getCpOption());
         System.out.printf("classpath: %s class: %s args: %s\n", classPath, cmd.getClazz(), Arrays.toString(cmd.getArgs()));
-        String className = cmd.getClazz();
+        String className = cmd.getClazz().replaceAll("\\.", "/");
         ClassFile classFile = loadClass(className, classPath);
         assert classFile != null;
-//        printClassInfo(classFile);
+        printClassInfo(classFile);
     }
 
     /**
@@ -53,6 +54,7 @@ public class StartJvmWithClassFile {
      * @param cf class文件
      */
     private static void printClassInfo(ClassFile cf) {
+        System.out.println("className: " + cf.getClassName());
         System.out.println("version: " + cf.getMajorVersion() + "." + cf.getMinorVersion());
         System.out.println("constants count：" + cf.getConstantPool().getConstantInfos().length);
         System.out.format("access flags：0x%x\n", cf.getAccessFlags());

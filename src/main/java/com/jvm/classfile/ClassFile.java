@@ -1,7 +1,7 @@
 package com.jvm.classfile;
 
+import cn.hutool.log.Log;
 import com.jvm.classfile.attributes.AttributeInfo;
-import com.jvm.utils.ByteUtils;
 
 /**
  * @Author zal
@@ -71,10 +71,13 @@ public class ClassFile {
      */
     AttributeInfo[] attributes;
 
+
+    private static final Log log = Log.get();
+
     /**
      * 构造方法
      *
-     * @param classData
+     * @param classData 类数据
      */
     public ClassFile(byte[] classData) {
         ClassReader reader = new ClassReader(classData);
@@ -101,6 +104,7 @@ public class ClassFile {
         if (magic != (0xCAFEBABEL & 0x0FFFFFFFFL)) {
             throw new ClassFormatError("magic!");
         }
+        log.info("【检查魔数】校验通过！");
     }
 
     /**
@@ -125,6 +129,7 @@ public class ClassFile {
         this.majorVersion = reader.readUint16();
         switch (this.majorVersion) {
             case 45:
+                log.info("【检查版本号】当前版本号为 {}", this.majorVersion);
                 return;
             case 46:
             case 47:
@@ -134,61 +139,32 @@ public class ClassFile {
             case 51:
             case 52:
                 if (this.minorVersion == 0) {
+                    log.info("【检查版本号】当前版本号为 {}", this.majorVersion);
                     return;
                 }
         }
         throw new UnsupportedClassVersionError();
     }
 
-
-    public int getMinorVersion() {
-        return minorVersion;
-    }
-
-    public int getMajorVersion() {
-        return majorVersion;
-    }
-
-    public ConstantPool getConstantPool() {
-        return constantPool;
-    }
-
-    public int getAccessFlags() {
-        return accessFlags;
-    }
-
-    public int getThisClass() {
-        return thisClass;
-    }
-
-    public int getSuperClass() {
-        return superClass;
-    }
-
-    public int[] getInterfaces() {
-        return interfaces;
-    }
-
-    public MemberInfo[] getFields() {
-        return fields;
-    }
-
-    public MemberInfo[] getMethods() {
-        return methods;
-    }
-
-    public AttributeInfo[] getAttributes() {
-        return attributes;
-    }
-
+    /**
+     * 从常量池查找类名
+     *
+     * @return 类名
+     */
     public String getClassName() {
         return constantPool.getClassName(thisClass);
     }
 
+    /**
+     * 从常量池查找超类名
+     *
+     * @return 超类名
+     */
     public String getSuperClassName() {
         if (superClass > 0) {
             return constantPool.getClassName(superClass);
         }
+        // 只有java.lang.Object没有超类
         return "";
     }
 
@@ -199,5 +175,85 @@ public class ClassFile {
             interfaceNames[i] = constantPool.getClassName(interfaces[i]);
         }
         return interfaceNames;
+    }
+
+    public int getMinorVersion() {
+        return minorVersion;
+    }
+
+    public void setMinorVersion(int minorVersion) {
+        this.minorVersion = minorVersion;
+    }
+
+    public int getMajorVersion() {
+        return majorVersion;
+    }
+
+    public void setMajorVersion(int majorVersion) {
+        this.majorVersion = majorVersion;
+    }
+
+    public ConstantPool getConstantPool() {
+        return constantPool;
+    }
+
+    public void setConstantPool(ConstantPool constantPool) {
+        this.constantPool = constantPool;
+    }
+
+    public int getAccessFlags() {
+        return accessFlags;
+    }
+
+    public void setAccessFlags(int accessFlags) {
+        this.accessFlags = accessFlags;
+    }
+
+    public int getThisClass() {
+        return thisClass;
+    }
+
+    public void setThisClass(int thisClass) {
+        this.thisClass = thisClass;
+    }
+
+    public int getSuperClass() {
+        return superClass;
+    }
+
+    public void setSuperClass(int superClass) {
+        this.superClass = superClass;
+    }
+
+    public int[] getInterfaces() {
+        return interfaces;
+    }
+
+    public void setInterfaces(int[] interfaces) {
+        this.interfaces = interfaces;
+    }
+
+    public MemberInfo[] getFields() {
+        return fields;
+    }
+
+    public void setFields(MemberInfo[] fields) {
+        this.fields = fields;
+    }
+
+    public MemberInfo[] getMethods() {
+        return methods;
+    }
+
+    public void setMethods(MemberInfo[] methods) {
+        this.methods = methods;
+    }
+
+    public AttributeInfo[] getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(AttributeInfo[] attributes) {
+        this.attributes = attributes;
     }
 }

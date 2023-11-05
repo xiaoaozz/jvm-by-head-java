@@ -1,7 +1,6 @@
 package com.jvm.classfile;
 
 import com.jvm.classfile.attributes.AttributeInfo;
-import lombok.Data;
 
 /**
  * @Author zal
@@ -16,7 +15,6 @@ import lombok.Data;
  * attribute_info attributes[attributes_count];
  * }
  */
-@Data
 public class MemberInfo {
 
     /**
@@ -28,14 +26,17 @@ public class MemberInfo {
      * 访问标志
      */
     private int accessFlags;
+
     /**
      * 常量池索引，给出字段或者方法名
      */
     private int nameIndex;
+
     /**
      * 常量池索引，给出字段或者方法的描述符
      */
     private int descriptorIdx;
+
     /**
      * 属性表
      */

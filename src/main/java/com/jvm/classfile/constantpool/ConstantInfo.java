@@ -1,5 +1,6 @@
 package com.jvm.classfile.constantpool;
 
+import cn.hutool.log.Log;
 import com.jvm.classfile.ClassReader;
 import com.jvm.classfile.ConstantPool;
 
@@ -12,6 +13,7 @@ import com.jvm.classfile.ConstantPool;
  * 常量数据的第一字节是tag，用来区分常量类型。根据在常量池的字节码的每个tag字节，可以判断下一个常量类型是什么。
  * 每个常量占用多少个字节是可以确定的。
  */
+
 public abstract class ConstantInfo {
 
     public static final int CONSTANT_Utf8 = 1;
@@ -40,19 +42,12 @@ public abstract class ConstantInfo {
     /**
      * 表明常量的类型
      */
-    protected int tag;
+    private int tag;
 
-    /**
-     * 获取当前常量的类型
-     *
-     * @return tag
-     */
-    public int getType() {
-        return tag;
-    }
+    private static final Log log = Log.get();
 
     public static ConstantInfo readConstantInfo(ClassReader reader, ConstantPool constantPool) {
-        int type = (reader.readUint8() + 256) % 256;
+        int type = reader.readUint8();
         ConstantInfo info = create(type, constantPool);
         info.readInfo(reader);
         return info;
@@ -100,5 +95,13 @@ public abstract class ConstantInfo {
                 throw new ClassFormatError("constant pool tag!");
         }
 
+    }
+
+    public int getTag() {
+        return tag;
+    }
+
+    public void setTag(int tag) {
+        this.tag = tag;
     }
 }

@@ -1,7 +1,6 @@
 package com.jvm.classfile.constantpool;
 
 import com.jvm.classfile.ClassReader;
-import lombok.Data;
 
 /**
  * @Author zal
@@ -14,13 +13,13 @@ import lombok.Data;
  *     u4 low_bytes;
  * }
  */
-@Data
+
 public class ConstantLongInfo extends ConstantInfo {
 
     private long val;
 
     @Override
     void readInfo(ClassReader reader) {
-        val = reader.readUint64ToLong();
+        this.val = reader.readUint64ToLong();
     }
 }

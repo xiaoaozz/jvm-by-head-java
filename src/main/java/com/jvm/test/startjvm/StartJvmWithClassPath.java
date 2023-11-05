@@ -11,7 +11,7 @@ import java.util.Arrays;
  * @Description 测试搜索classpath文件
  * @Version 2.0
  */
-public class startJvmWithClassPath {
+public class StartJvmWithClassPath {
 
     /**
      * 测试
@@ -19,7 +19,7 @@ public class startJvmWithClassPath {
      * @test 搜索指定路径class文件 java -Xjre "/Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home/jre" "/src/main/resources/HelloWorld"
      */
     public static void test(Cmd cmd) {
-        ClassPath cp = new ClassPath(cmd.getXJreOption(), cmd.getCpOption());
+        ClassPath cp = new ClassPath(cmd.getxJreOption(), cmd.getCpOption());
         System.out.printf("classpath: %s class: %s args: %s\n", cmd.getCpOption(), cmd.getClazz(), cmd.getArgs());
         String className = cmd.getClazz();
         try{

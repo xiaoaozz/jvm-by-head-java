@@ -1,7 +1,6 @@
 package com.jvm.classfile.constantpool;
 
 import com.jvm.classfile.ClassReader;
-import lombok.Data;
 
 /**
  * @Author zal
@@ -14,7 +13,6 @@ import lombok.Data;
  *     u1 bytes[length];
  * }
  */
-@Data
 public class ConstantUtf8Info extends ConstantInfo{
 
     String str;
@@ -24,5 +22,13 @@ public class ConstantUtf8Info extends ConstantInfo{
         int len = reader.readUint16();
         byte[] bytes = reader.readBytes(len);
         str = new String(bytes);
+    }
+
+    public String getStr() {
+        return str;
+    }
+
+    public void setStr(String str) {
+        this.str = str;
     }
 }

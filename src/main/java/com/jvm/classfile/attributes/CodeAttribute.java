@@ -85,14 +85,16 @@ public class CodeAttribute extends AttributeInfo {
         int exceptionTableLength = reader.readUint16();
         ExceptionTableEntry[] exceptionTable = new ExceptionTableEntry[exceptionTableLength];
         for (int i = 0; i < exceptionTableLength; i++) {
-            exceptionTable[i] = new ExceptionTableEntry(reader.readUint16(), reader.readUint16(),
-                    reader.readUint16(), reader.readUint16());
+            exceptionTable[i] = new ExceptionTableEntry(reader.readUint16(),
+                    reader.readUint16(),
+                    reader.readUint16(),
+                    reader.readUint16());
         }
         return exceptionTable;
     }
 
 
-    class ExceptionTableEntry {
+    static class ExceptionTableEntry {
         /**
          * 开始
          */

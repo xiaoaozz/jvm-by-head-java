@@ -1,7 +1,6 @@
 package com.jvm.classfile.constantpool;
 
 import com.jvm.classfile.ClassReader;
-import lombok.Data;
 
 /**
  * @Author zal
@@ -13,13 +12,13 @@ import lombok.Data;
  * u4 bytes;
  * }
  */
-@Data
+
 public class ConstantIntegerInfo extends ConstantInfo {
 
     private int val;
 
     @Override
     void readInfo(ClassReader reader) {
-        val = reader.readUint32ToInt();
+        this.val = reader.readUint32ToInt();
     }
 }

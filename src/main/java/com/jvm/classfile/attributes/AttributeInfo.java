@@ -2,7 +2,6 @@ package com.jvm.classfile.attributes;
 
 import com.jvm.classfile.ClassReader;
 import com.jvm.classfile.ConstantPool;
-import lombok.Data;
 
 /**
  * @Author zal

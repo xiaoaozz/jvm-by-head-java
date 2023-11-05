@@ -2,7 +2,6 @@ package com.jvm.classfile.constantpool;
 
 import com.jvm.classfile.ClassReader;
 import com.jvm.classfile.ConstantPool;
-import lombok.Data;
 
 import java.util.Map;
 
@@ -14,7 +13,7 @@ import java.util.Map;
  * 因为CONSTANT_FieldRef_info字段符号引用、CONSTANT_MethodRef_info普通（非接口）方法符号引用、
  * CONSTANT_InterfaceMethodRef接口方法符号引用 这三种类型结构一样，所以给出统一的类结构
  */
-@Data
+
 public class ConstantMemberRefInfo extends ConstantInfo{
 
     /**

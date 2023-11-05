@@ -14,6 +14,7 @@ import com.jvm.classfile.ConstantPool;
  *     u2 source_file_index;
  * }
  */
+
 public class SourceFileAttribute extends AttributeInfo {
 
     /**
@@ -36,7 +37,7 @@ public class SourceFileAttribute extends AttributeInfo {
 
     @Override
     void readInfo(ClassReader reader) {
-        sourceFileIndex = reader.readUint16();
+        this.sourceFileIndex = reader.readUint16();
     }
 
     /**
@@ -44,6 +45,6 @@ public class SourceFileAttribute extends AttributeInfo {
      * @return 文件名称
      */
     public String getFileName() {
-        return constantPool.getUtf8(sourceFileIndex);
+        return this.constantPool.getUtf8(this.sourceFileIndex);
     }
 }

@@ -12,6 +12,6 @@ import com.jvm.cmd.strategy.CommandStrategy;
 public class JreCommandStrategy implements CommandStrategy {
     @Override
     public void execute(Cmd cmd, String[] args) {
-        cmd.setXJreOption(args[2]);
+        cmd.setxJreOption(args[2]);
     }
 }

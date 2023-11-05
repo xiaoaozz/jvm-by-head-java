@@ -1,7 +1,6 @@
 package com.jvm.classfile.constantpool;
 
 import com.jvm.classfile.ConstantPool;
-import lombok.Data;
 
 /**
  * @Author zal
@@ -14,7 +13,7 @@ import lombok.Data;
  *     u2 name_and_type_index;
  * }
  */
-@Data
+
 public class ConstantFieldRefInfo extends ConstantMemberRefInfo {
 
 

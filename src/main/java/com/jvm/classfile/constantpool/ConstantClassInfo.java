@@ -2,8 +2,6 @@ package com.jvm.classfile.constantpool;
 
 import com.jvm.classfile.ClassReader;
 import com.jvm.classfile.ConstantPool;
-import com.sun.org.apache.bcel.internal.classfile.ConstantClass;
-import lombok.Data;
 
 /**
  * @Author zal
@@ -15,7 +13,7 @@ import lombok.Data;
  *     u2 name_index;
  * }
  */
-@Data
+
 public class ConstantClassInfo extends ConstantInfo{
 
     /**
@@ -41,5 +39,19 @@ public class ConstantClassInfo extends ConstantInfo{
         return constantPool.getUtf8(nameIndex);
     }
 
+    public ConstantPool getConstantPool() {
+        return constantPool;
+    }
 
+    public void setConstantPool(ConstantPool constantPool) {
+        this.constantPool = constantPool;
+    }
+
+    public int getNameIndex() {
+        return nameIndex;
+    }
+
+    public void setNameIndex(int nameIndex) {
+        this.nameIndex = nameIndex;
+    }
 }

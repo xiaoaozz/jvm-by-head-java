@@ -37,6 +37,6 @@ public class ConstantValueAttribute extends AttributeInfo{
      * @return 索引值
      */
     public int getConstantValueIndex() {
-        return constantValueIndex;
+        return this.constantValueIndex;
     }
 }

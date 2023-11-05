@@ -1,8 +1,9 @@
 package com.jvm.test;
 
+import cn.hutool.log.Log;
 import com.jvm.cmd.Cmd;
 import com.jvm.test.startjvm.StartJvmWithClassFile;
-import com.jvm.test.startjvm.startJvmWithClassPath;
+import com.jvm.test.startjvm.StartJvmWithClassPath;
 
 import java.util.Arrays;
 
@@ -13,25 +14,17 @@ import java.util.Arrays;
  * @Version 1.0
  */
 public class CmdTest {
+    private final static Log log = Log.get("main主函数");
+
     public static void main(String[] args) {
-        System.out.println("【启动类参数】" + Arrays.toString(args));
+        log.info("【启动类参数】{}", Arrays.toString(args));
         Cmd cmd = new Cmd(args);
-        System.out.println(cmd);
+        log.info("【cmd类】{}", cmd);
         // 测试命令行工具
-//         startJVMWithCmd(cmd);
+        // StartJvmWithCmd.test(cmd);
         // 测试搜索class文件
-//         startJvmWithClassPath.test(cmd);
+//         StartJvmWithClassPath.test(cmd);
         // 测试解析class文件
         StartJvmWithClassFile.test(cmd);
     }
-
-    /**
-     * V1.0 测试简单Cmd命令行工具
-     * @param cmd 命令行工具
-     * @test java -help
-     */
-    private static void startJVMWithCmd(Cmd cmd) {
-        System.out.printf("classpath: %s class: %s args: %s\n", cmd.getCpOption(), cmd.getClazz(), cmd.getArgs());
-    }
-
 }

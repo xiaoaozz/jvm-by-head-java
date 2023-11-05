@@ -1,16 +1,11 @@
 package com.jvm.cmd;
 
-import com.jvm.constant.CommandConstants;
 import com.jvm.cmd.strategy.CommandStrategy;
 import com.jvm.cmd.strategy.impl.ClasspathCommandStrategy;
 import com.jvm.cmd.strategy.impl.HelpCommandStrategy;
 import com.jvm.cmd.strategy.impl.JreCommandStrategy;
 import com.jvm.cmd.strategy.impl.VersionCommandStrategy;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.Arrays;
+import com.jvm.constant.CommandConstants;
 
 /**
  * @Author zal
@@ -18,9 +13,6 @@ import java.util.Arrays;
  * @Description 控制台实体类
  * @Version 1.0
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Cmd {
 
     /**
@@ -151,5 +143,38 @@ public class Cmd {
         for (int i = 0; i < cmd.getArgs().length; i++) {
             System.out.println(cmd.getArgs()[i]);
         }
+    }
+
+
+    public String getCpOption() {
+        return cpOption;
+    }
+
+    public void setCpOption(String cpOption) {
+        this.cpOption = cpOption;
+    }
+
+    public String getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(String clazz) {
+        this.clazz = clazz;
+    }
+
+    public String[] getArgs() {
+        return args;
+    }
+
+    public void setArgs(String[] args) {
+        this.args = args;
+    }
+
+    public String getxJreOption() {
+        return xJreOption;
+    }
+
+    public void setxJreOption(String xJreOption) {
+        this.xJreOption = xJreOption;
     }
 }

@@ -1,7 +1,6 @@
 package com.jvm.classfile.constantpool;
 
 import com.jvm.classfile.ClassReader;
-import lombok.Data;
 
 /**
  * @Author zal
@@ -14,7 +13,6 @@ import lombok.Data;
  *     u2 descriptor_index;
  * }
  */
-@Data
 public class ConstantNameAndTypeInfo extends ConstantInfo {
 
     /**
@@ -31,5 +29,21 @@ public class ConstantNameAndTypeInfo extends ConstantInfo {
     void readInfo(ClassReader reader) {
         nameIndex = reader.readUint16();
         descriptorIndex = reader.readUint16();
+    }
+
+    public int getNameIndex() {
+        return nameIndex;
+    }
+
+    public void setNameIndex(int nameIndex) {
+        this.nameIndex = nameIndex;
+    }
+
+    public int getDescriptorIndex() {
+        return descriptorIndex;
+    }
+
+    public void setDescriptorIndex(int descriptorIndex) {
+        this.descriptorIndex = descriptorIndex;
     }
 }

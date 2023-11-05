@@ -8,6 +8,7 @@ import com.jvm.classfile.ClassReader;
  * @Description 未知的属性
  * @Version 1.0
  */
+
 public class UnparsedAttribute extends AttributeInfo{
 
     /**
@@ -39,6 +40,6 @@ public class UnparsedAttribute extends AttributeInfo{
 
     @Override
     void readInfo(ClassReader reader) {
-
+        this.info = reader.readBytes(this.length);
     }
 }

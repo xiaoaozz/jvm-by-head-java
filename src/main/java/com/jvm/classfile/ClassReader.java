@@ -1,8 +1,7 @@
 package com.jvm.classfile;
 
-import cn.hutool.core.util.ByteUtil;
 import com.jvm.utils.ByteUtils;
-import lombok.Data;
+
 
 /**
  * @Author zal
@@ -10,7 +9,6 @@ import lombok.Data;
  * @Description class数据读取类 u1、u2、u4分别表示1、2、4字节无符号整数
  * @Version 1.0
  */
-@Data
 public class ClassReader {
 
     /**
